@@ -1,0 +1,1312 @@
+/* ==========================================================================
+   MAIN STYLESHEET - Rutgers Course Scheduling System
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ========================================================================== */
+
+:root {
+  /* Brand Colors */
+  --rutgers-red: #d21033;
+  --link-color: #57c;
+  --link-hover: #d21033;
+  
+  /* Box Colors */
+  --box-border: #fea;
+  --box-background: #ffd;
+  --box-focus: #ffdf81;
+  
+  /* Status Colors */
+  --success-color: #390;
+  --error-color: #d21033;
+  --warning-color: #ff9;
+  --info-color: #57c;
+  
+  /* Campus Colors */
+  --campus-busch: #bfeeff;        /* Blue */
+  --campus-cook-douglas: #cfc;    /* Green */
+  --campus-livingston: #fc9;      /* Orange */
+  --campus-college-ave: #ffb;     /* Yellow */
+  --campus-downtown: #ffd7ef;     /* Pink */
+  --campus-camden: #e4bfff;       /* Purple */
+  --campus-newark: #eed;          /* Gray */
+  --campus-online: #ff8080;       /* Light Blue */
+  --campus-online2: #aaffff;      /* Alternate Online */
+  --campus-unknown: #ddd;         /* Silver */
+  
+  /* Section Status Colors */
+  --section-open: #16b300;
+  --section-closed: #d21033;
+  
+  /* Neutral Colors */
+  --text-primary: #000;
+  --text-secondary: #333;
+  --text-muted: #777;
+  --text-light: #999;
+  --text-disabled: #ddd;
+  
+  --background-light: #fafafa;
+  --background-white: #fff;
+  --border-light: #eee;
+  --border-medium: #ddd;
+  --border-dark: #ccc;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.hide {
+  display: none;
+  visibility: hidden;
+}
+
+.print {
+  display: none;
+}
+
+/* ==========================================================================
+   NAVIGATION & TABS
+   ========================================================================== */
+
+/* Active Tab States */
+#course-lookup #meta .tabs #lookup a,
+#add-drop #meta .tabs #manage a,
+#errors #meta .tabs #manage a,
+.schedule #meta .tabs #view a {
+  background-position: 0 -300px;
+  background: var(--background-white);
+  border: 1px solid #dfdfdf;
+  border-bottom: 0;
+  padding-bottom: 1px;
+}
+
+#course-lookup #meta .tabs #lookup a:hover,
+#add-drop #meta .tabs #manage a:hover,
+#errors #meta .tabs #manage a:hover,
+.schedule #meta .tabs #view a:hover {
+  cursor: text;
+  padding: 5px 0 1px 9px;
+}
+
+#course-lookup #meta .tabs #lookup a span,
+#add-drop #meta .tabs #manage a span,
+#errors #meta .tabs #manage a span,
+.schedule #meta .tabs #view a span {
+  padding-bottom: 4px;
+  background-position: 100% 0;
+  color: var(--text-secondary);
+  font-weight: 900;
+  background: var(--background-white);
+}
+
+/* Admin Navigation */
+#admin-begin-period #begin-period a,
+#admin-schedule #schedule a,
+#admin-parameters #parameters a {
+  border-top: 0;
+  padding: 5px 0 4px;
+  background: var(--background-white);
+}
+
+#admin-begin-period #begin-period a:hover,
+#admin-schedule #schedule a:hover,
+#admin-parameters #parameters a:hover {
+  cursor: text;
+  padding: 5px 0 4px;
+}
+
+#admin-begin-period #begin-period a span,
+#admin-schedule #schedule a span,
+#admin-parameters #parameters a span {
+  background: var(--background-white);
+  color: var(--text-primary);
+  font-weight: 900;
+}
+
+/* User Navigation */
+#nav-system li#user:after {
+  content: "|";
+  margin-left: 10px;
+}
+
+li#user {
+  color: var(--background-white);
+}
+
+/* ==========================================================================
+   LINKS & BUTTONS
+   ========================================================================== */
+
+/* External Links */
+#content a.ext {
+  padding-right: 15px;
+  background: url(../images/external.gif) no-repeat right center;
+}
+
+#content a.help {
+  padding: 2px 0 2px 24px;
+  background: url(../images/help.gif) no-repeat left center;
+}
+
+#content .box p a.ext,
+#content .box p a.help {
+  line-height: 18px;
+}
+
+/* Print Links */
+#content a.print {
+  float: right;
+  background: transparent url(../images/print.gif) no-repeat;
+  padding-left: 24px !important;
+}
+
+#content a:hover.print {
+  color: var(--rutgers-red);
+}
+
+/* Submit Buttons */
+.box .row.btn {
+  clear: both;
+  float: left;
+  margin-top: 18px;
+  padding-bottom: 0;
+}
+
+#errors .box .row.btn {
+  border-top: 1px solid var(--box-border);
+  padding-top: 18px;
+  width: 100%;
+}
+
+#content .box input.btn-submit {
+  min-width: 0;
+  width: auto;
+  overflow: visible;
+  font-weight: 900;
+  font-size: 1.1em;
+  letter-spacing: 0;
+  padding: 0.5em;
+  color: var(--rutgers-red);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+h2 {
+  margin: 0 auto 18px;
+}
+
+h2 a {
+  font-size: 0.666em;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+#meta {
+  background: var(--background-light);
+}
+
+#meta h2 {
+  margin: 0 0 9px 25px;
+  padding-top: 9px;
+}
+
+/* Status Information */
+p#credits {
+  font-size: 10px;
+  float: right;
+  margin: 6px 25px 0 0;
+  text-align: right;
+  color: var(--text-muted);
+}
+
+p#credits span {
+  font-size: 1.8em;
+  color: var(--text-primary);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* ==========================================================================
+   MESSAGES & NOTIFICATIONS
+   ========================================================================== */
+
+#content .info {
+  background: var(--background-light);
+  border: 1px dashed var(--border-light);
+  margin: 0 auto 18px;
+  padding: 9px 18px;
+}
+
+#content .errors {
+  margin: 0 auto 18px;
+  padding: 2px 18px 12px;
+}
+
+#content .info h2 {
+  color: var(--text-primary);
+}
+
+#content .info ul {
+  list-style: none;
+}
+
+#content .info li.error {
+  color: var(--error-color);
+  background: url(../images/errors-s2.gif) no-repeat left 4px;
+  padding-left: 18px;
+  list-style-position: outside;
+}
+
+#content .info li.ok {
+  color: var(--success-color);
+  background: url(../images/confirm-s.gif) no-repeat left center;
+  padding-left: 18px;
+  list-style-position: outside;
+}
+
+/* ==========================================================================
+   FORMS & BOXES
+   ========================================================================== */
+
+/* Main Box Container */
+.box {
+  position: relative;
+  float: left;
+  border: 1px solid var(--box-border);
+  padding: 18px;
+  width: 288px;
+  min-height: 33em;
+  background: var(--box-background);
+  border-radius: 10px;
+}
+
+.box h2 {
+  position: relative;
+  margin: 0 0 9px !important;
+  border-bottom: 1px solid var(--box-border);
+  padding: 3px 0;
+  font-weight: 400;
+  font-size: 1.8em;
+  color: var(--rutgers-red);
+}
+
+.box h2 img {
+  left: -26px;
+  position: absolute;
+  top: 4px;
+}
+
+.box input[type="password"]:focus,
+.box input[type="text"]:focus,
+.box select:focus {
+  outline: 2px solid var(--box-focus);
+}
+
+/* Form Error States */
+input.error,
+select.error,
+textarea.error {
+  outline: 2px solid var(--error-color);
+  color: var(--error-color);
+}
+
+.required {
+  background: var(--warning-color);
+}
+
+/* ==========================================================================
+   HOME PAGE
+   ========================================================================== */
+
+#home .box p {
+  color: #555;
+}
+
+#home p.ru-students {
+  text-align: center;
+}
+
+#home p.ru-students a:link,
+#home p.ru-students a:visited {
+  display: block;
+  background: var(--background-white);
+  margin: 0 auto;
+  border: 1px solid var(--box-border);
+  border-color: var(--box-border);
+  padding: 10px 0 !important;
+  width: 99%;
+  border-radius: 10px;
+  color: var(--link-color);
+}
+
+#home p.ru-students a:hover {
+  background: var(--link-color);
+  color: var(--background-white);
+  border-color: var(--link-color);
+}
+
+#home p.ru-students a em {
+  display: block;
+  font-size: 2em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#home p.visiting-students {
+  border-top: 1px solid var(--box-border);
+  padding-top: 18px;
+}
+
+#home .visiting-students a {
+  text-align: center;
+  display: block;
+  width: 15em;
+  line-height: 1.5;
+  padding: 0.5em;
+  margin: 1.5em auto 0;
+  border-radius: 10px;
+}
+
+#home .visiting-students a em {
+  font: normal 400 1.5em/1.5 Georgia, 'Times New Roman', Times, serif;
+}
+
+/* ==========================================================================
+   LOGIN PAGE
+   ========================================================================== */
+
+#login .box input {
+  width: 260px;
+  font-size: 15px;
+  letter-spacing: 5px;
+}
+
+#login .box #hours {
+  clear: both;
+}
+
+#login .box #hours h3 {
+  margin-top: 10px;
+  margin-bottom: 0.5em;
+  float: left;
+  width: 100%;
+  line-height: 1.2;
+  font-size: 12px;
+}
+
+#login .box #hours p {
+  font-size: 1em;
+  color: var(--text-muted);
+  margin: 0;
+  clear: left;
+}
+
+#login .box p.note {
+  float: right;
+  width: 75%;
+  font-size: 1em;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   SEMESTER SELECTION
+   ========================================================================== */
+
+#choose .box fieldset {
+  margin: 0 0 1.5em;
+  border: 0;
+  padding: 0;
+}
+
+#choose .box .row {
+  margin: 0;
+  padding: 0;
+}
+
+#choose .box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#choose .box li {
+  margin: 0;
+  padding: 0;
+}
+
+#choose .box li label {
+  display: block;
+  line-height: 2em;
+  font-size: 1em;
+  text-transform: capitalize;
+}
+
+#choose .box li label input {
+  position: relative;
+  top: 0.1em;
+}
+
+#choose .box label {
+  color: #555;
+  margin: 0.25em 0;
+  line-height: 13px;
+}
+
+#choose ul.choose label:focus,
+#choose ul.choose label:hover {
+  background: var(--box-focus);
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   COURSE LOOKUP
+   ========================================================================== */
+
+#course-lookup .box {
+  width: 100%;
+  min-height: 0;
+  padding: 18px 0;
+  margin-bottom: 18px;
+}
+
+#course-lookup #courseSelectionContainer h2 {
+  clear: both;
+  margin-bottom: 0;
+}
+
+#course-lookup form {
+  display: block;
+  clear: both;
+  overflow: hidden;
+}
+
+#course-lookup h2 i {
+  font: normal 400 11px Arial, Helvetica, sans-serif;
+  color: var(--text-light);
+}
+
+#course-lookup h2 i a {
+  font-size: 1em;
+}
+
+#course-lookup .box form {
+  padding: 0 18px;
+  display: block;
+}
+
+#course-lookup #content li {
+  margin: 10px 0;
+}
+
+#course-lookup ol.search {
+  margin: 0 0 1em;
+  padding: 0;
+  float: left;
+  border-right: 1px solid var(--box-border);
+  width: 50%;
+}
+
+#course-lookup ol.search label {
+  display: none;
+}
+
+#course-lookup ol.filter {
+  margin-left: 2em;
+  padding: 0;
+  float: left;
+  width: 13em;
+}
+
+#course-lookup ol.filter li {
+  margin: 5px 0;
+}
+
+#course-lookup ol.filter li label {
+  font-size: 11px;
+  color: #555;
+  vertical-align: top;
+}
+
+#course-lookup div.row {
+  border-top: 1px solid var(--box-border);
+  padding: 18px 0 0;
+  margin: 0;
+  clear: both;
+  width: 100%;
+}
+
+/* Course Lookup Table */
+#course-lookup table {
+  width: 99.5%;
+  margin: 0;
+}
+
+#course-lookup thead th {
+  padding: 10px 5px;
+  vertical-align: middle;
+  background: var(--border-light);
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 18px;
+  border-left: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+#course-lookup thead th span,
+#course-lookup .toggler a {
+  display: block;
+  padding-bottom: 2px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+#course-lookup thead th a {
+  color: var(--text-secondary);
+}
+
+#course-lookup thead tr.notes th {
+  border-bottom: 0;
+}
+
+#course-lookup thead tr.c-notes td {
+  background: var(--border-light);
+  border-top: 1px dashed var(--border-medium);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+#course-lookup .toggler {
+  width: 30px;
+}
+
+#course-lookup .toggler a {
+  text-decoration: none;
+  background: url(../images/expand.gif) no-repeat 50% 75%;
+  display: block;
+  text-align: center;
+  line-height: 1;
+  padding-bottom: 23px;
+}
+
+#course-lookup tbody tr:hover td {
+  background: var(--box-background);
+}
+
+#course-lookup tr.c-notes td,
+#course-lookup tr.s-notes td {
+  border-bottom: 0;
+  border-left: 0;
+  font-size: 11px;
+}
+
+#course-lookup td {
+  padding: 5px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-medium);
+  border-left: 1px solid var(--background-light);
+}
+
+#course-lookup td.cb {
+  width: 25px;
+  border-left: 0;
+}
+
+#course-lookup td.i {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+#course-lookup td.d b {
+  font-weight: 900;
+  float: left;
+  width: 2em;
+}
+
+#course-lookup td.section {
+  font-size: 18px !important;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--section-open);
+}
+
+#course-lookup td.section em {
+  padding: 1px 5px;
+  width: 5em;
+  display: inline-block;
+  text-align: center;
+  background: var(--section-open);
+  color: var(--background-white);
+}
+
+#course-lookup td.closed {
+  color: var(--section-closed);
+}
+
+#course-lookup td.closed em {
+  background: var(--section-closed);
+}
+
+#course-lookup td p {
+  margin: 0;
+  padding: 0;
+}
+
+#course-lookup tr.notes td {
+  border-bottom: 0;
+}
+
+#course-lookup tr.s-notes td {
+  border-top: 1px dashed var(--border-medium);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+#course-lookup tfoot td {
+  border: 0;
+  padding-top: 1.5em;
+}
+
+/* ==========================================================================
+   SIDEBAR
+   ========================================================================== */
+
+#course-lookup #sidebar {
+  clear: both;
+}
+
+#sidebar {
+  overflow: auto;
+  padding: 1px 0 18px 25px;
+}
+
+#sidebar h2 {
+  margin: 24px 0 10px;
+  padding: 0;
+  font-size: 1.5em;
+  color: var(--text-secondary);
+}
+
+#sidebar h2 a {
+  background: url(../images/calendar.gif) left center no-repeat;
+  padding-left: 24px !important;
+}
+
+#sidebar h3 {
+  margin-bottom: 10px;
+}
+
+#sidebar ul,
+#sidebar ul.links {
+  margin: 0 auto;
+  padding-bottom: 0;
+  padding-left: 13px;
+  color: var(--text-disabled);
+}
+
+#sidebar ul.links {
+  margin-top: 0.5em;
+}
+
+#sidebar p {
+  margin: 0 0 18px;
+  padding: 0;
+  color: #555;
+}
+
+#sidebar p.links {
+  margin-bottom: 0;
+}
+
+#sidebar li p {
+  margin-bottom: 9px;
+  font-size: 11px;
+}
+
+/* Sidebar Expand/Collapse */
+#course-lookup #sidebar h2 a#expand {
+  background: url(../images/expand.gif) left center no-repeat;
+  padding-left: 24px !important;
+}
+
+#course-lookup #sidebar h2 a#collapse {
+  background: url(../images/collapse.gif) left center no-repeat;
+  padding-left: 24px !important;
+}
+
+/* ==========================================================================
+   ADD/DROP & ERRORS
+   ========================================================================== */
+
+#add-drop .box ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#add-drop .box ol li {
+  float: left;
+  margin: 0;
+  padding: 5px 0;
+  width: 50%;
+}
+
+#add-drop .box ol li label {
+  display: block;
+  font-size: 11px;
+}
+
+#add-drop .box ol li input {
+  width: 50%;
+}
+
+#add-drop #sidebar h2,
+#errors #sidebar h2 {
+  text-align: right;
+  margin: 0 0 18px;
+  border-bottom: 1px solid var(--border-light);
+  padding: 3px 0;
+  font-weight: 400;
+  margin-top: 1em;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+#add-drop #sidebar h2 span,
+#errors #sidebar h2 span {
+  float: left;
+}
+
+/* Definition Lists for Course Information */
+#add-drop dl,
+#errors dl {
+  overflow: auto;
+  clear: both;
+}
+
+dl dl {
+  margin: 0;
+  padding: 0 0 9px 1em;
+  height: auto;
+  min-height: 1px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+dt a {
+  float: left;
+  color: var(--text-primary) !important;
+  text-decoration: none;
+  line-height: 1.7;
+}
+
+dt a:hover {
+  background: transparent !important;
+}
+
+dt span {
+  word-spacing: 3px;
+  color: var(--text-muted);
+  font-weight: 400;
+  float: left;
+  margin-left: 5px;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+dt span b {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+dt span em {
+  line-height: 1.8;
+}
+
+dt input {
+  position: relative;
+  top: 0.5em;
+  margin: 0;
+  padding: 1px 0 1px;
+  font-size: 11px;
+  line-height: 1.0;
+  position: relative;
+  top: 1px;
+  overflow: visible;
+}
+
+dd {
+  margin: 0;
+}
+
+dd dd {
+  border: 0;
+  color: var(--text-muted);
+  margin: 0;
+  padding-left: 90px;
+}
+
+dt {
+  text-align: right;
+  vertical-align: middle;
+}
+
+dt:hover {
+  background: #f2f2f2;
+}
+
+dl dl dt:hover {
+  background: transparent;
+}
+
+dl dl dt {
+  color: var(--text-muted);
+  padding-left: 12px;
+  margin: 0;
+}
+
+dd dt {
+  float: left;
+  text-align: left;
+  margin: 0 1em 1em 0;
+  clear: left;
+}
+
+/* Meeting Time Styles */
+.dl2 {
+  font: normal 400 1.1em/1.5 Verdana, Helvetica, sans-serif;
+}
+
+.dl3 {
+  padding-top: 6px;
+}
+
+.meeting2 {
+  color: var(--text-muted);
+  line-height: 2.2;
+}
+
+.meeting2:hover {
+  color: var(--rutgers-red);
+}
+
+.dayname3 {
+  display: inline-block;
+  width: 200px;
+  line-height: 2;
+}
+
+.timestring3 {
+  display: inline-block;
+  width: 200px;
+}
+
+.buildingroom3 {
+  display: inline-block;
+  width: 200px;
+}
+
+/* Withdrawn Course Indicator */
+#by-day .list-day th span.withdrawn,
+#by-course .list-course th span.withdrawn,
+#by-day .list-day td span.withdrawn,
+span.withdrawn {
+  color: var(--rutgers-red);
+}
+
+/* Error Page Open Sections */
+#errors .open-sections {
+  position: relative;
+  overflow: auto;
+  margin-bottom: 9px;
+  border: 1px solid var(--text-primary);
+  border-color: #828177 #f9f8f3 #f9f8f3 #828177;
+  padding-right: 2px;
+  height: 100px;
+  width: 97%;
+  background: var(--background-white);
+}
+
+#errors .open-sections:focus {
+  outline: 2px solid var(--box-focus);
+}
+
+#errors .open-sections p {
+  margin: 0;
+  padding: 0;
+}
+
+#errors .open-sections input {
+  float: left;
+  position: relative;
+  z-index: 10;
+  top: 1px;
+}
+
+#errors .open-sections label {
+  margin: 0;
+  vertical-align: middle;
+  display: block;
+  padding: 1px 0 1px 24px;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+#errors .open-sections label:hover,
+#errors .open-sections label:focus {
+  background: var(--box-focus);
+}
+
+#errors .box dl {
+  margin: 0;
+  padding: 0 0 2px 2px;
+}
+
+#errors .box dt {
+  margin: 18px 0 0;
+  border-top: 1px solid var(--box-border);
+  padding-top: 18px;
+  text-align: left;
+  font-size: 1.1em;
+  font-weight: 900;
+}
+
+#errors .box dt.first {
+  margin-top: -1em;
+  margin-bottom: 10px;
+  border: 0;
+}
+
+#errors .box dt:hover {
+  background: transparent;
+}
+
+#errors .box dd {
+  color: #555;
+  font-size: 1.1em;
+  border: 0;
+}
+
+/* ==========================================================================
+   SCHEDULE VIEWS
+   ========================================================================== */
+
+.schedule p.filters {
+  clear: both;
+  text-transform: capitalize;
+  text-align: left;
+  line-height: 1.5;
+  color: #555;
+}
+
+.schedule p.filters b {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.schedule p.filters a {
+  padding: 1px 0 !important;
+}
+
+.schedule p.filters span {
+  padding: 4px;
+}
+
+#by-day p.filters,
+#by-course p.filters {
+  float: none;
+  margin-left: 0;
+  width: auto;
+}
+
+/* ==========================================================================
+   CALENDAR GRID
+   ========================================================================== */
+
+#grid #calendar {
+  clear: both;
+  table-layout: fixed;
+}
+
+#grid #calendar thead th {
+  text-align: center;
+  color: var(--text-muted);
+  border: 1px solid var(--background-white);
+  border-bottom: 2px solid #999;
+  width: 125px;
+  padding: 5px 0;
+  background: var(--border-light);
+}
+
+#grid #calendar thead tr th.first {
+  border-color: var(--background-white);
+  background: var(--background-white);
+  width: 50px;
+  padding: 5px 5px 5px 0;
+}
+
+#grid #calendar thead tr th.monday {
+  border-left-color: var(--border-light);
+}
+
+#grid #calendar td {
+  border: 1px solid var(--border-light);
+  width: 125px;
+  padding: 0 !important;
+}
+
+#grid #calendar tbody th {
+  text-align: right;
+  color: var(--text-muted);
+  vertical-align: middle;
+  border: 1px solid var(--background-white);
+  border-right-color: var(--border-light);
+  width: 50px;
+  height: 60px;
+  padding: 0 5px 0 0;
+}
+
+#grid #calendar th div {
+  height: 60px;
+  position: relative;
+  top: -0.5em;
+}
+
+#grid #calendar td+td+td+td+td+td {
+  background: #fcfcfc;
+}
+
+#grid #calendar td.start div {
+  position: relative;
+  left: 0;
+  top: 0;
+  height: 60px;
+}
+
+#grid #calendar .weekend {
+  background: var(--background-light);
+}
+
+#grid #calendar td.start div div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 55px;
+  width: 115px;
+  padding: 5px 5px 0;
+  overflow: hidden;
+  font-size: 10px;
+}
+
+#grid #calendar td.start div div b {
+  font-size: 1.1em;
+  font-weight: 900;
+  line-height: 1.0;
+}
+
+#grid #calendar td.start div div br {
+  display: none;
+}
+
+#grid #calendar td.start div div a {
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+#grid #calendar td.start div div span.time {
+  display: block;
+  margin: 0 0 0.5em;
+  color: #555;
+}
+
+#grid #calendar div div:hover {
+  outline: 2px solid var(--text-primary);
+  z-index: 100;
+}
+
+/* Campus Color Coding */
+#grid .b { background-color: var(--campus-busch); }           /* Busch */
+#grid .cd { background-color: var(--campus-cook-douglas); }   /* Cook/Douglas */
+#grid .l { background-color: var(--campus-livingston); }      /* Livingston */
+#grid .ca { background-color: var(--campus-college-ave); }    /* College Ave */
+#grid .d { background-color: var(--campus-downtown); }        /* Downtown */
+#grid .cm { background-color: var(--campus-camden); }         /* Camden */
+#grid .nk { background-color: var(--campus-newark); }         /* Newark */
+#grid .online { background-color: var(--campus-online); }     /* Online */
+#grid .online2 { background-color: var(--campus-online2); }   /* Online Alt */
+#grid .online1 { background-color: var(--campus-online); }    /* Online */
+#grid .u { background-color: var(--campus-unknown); }         /* Unknown */
+
+#grid #calendar div.campus.nbp {
+  background-color: #9cf;
+}
+
+/* ==========================================================================
+   LIST VIEWS
+   ========================================================================== */
+
+#by-day .list-day,
+#by-course .list-course {
+  width: 75%;
+}
+
+#by-day .list-day table,
+#by-course .list-course table {
+  font: normal 400 1.1em/1.5 Verdana, Helvetica, sans-serif;
+  color: #555;
+  width: 100%;
+}
+
+#by-day .list-day th,
+#by-course .list-course th {
+  border-bottom: 1px solid var(--border-light);
+  word-spacing: 5px;
+  padding-top: 1.5em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font: 400 1.3em/1.0 Georgia, "Times New Roman", serif;
+  background: var(--background-white);
+}
+
+#by-day .list-day td,
+#by-course .list-course td {
+  color: var(--text-muted);
+}
+
+#by-day .list-day th span,
+#by-course .list-course th span,
+#by-day .list-day td span {
+  color: var(--text-muted);
+  font: normal 400 11px/1.0 Verdana, Arial, sans-serif;
+  text-transform: capitalize;
+  word-spacing: 0;
+}
+
+#by-day .list-day b {
+  word-spacing: 5px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+#courses-other li {
+  color: var(--text-disabled);
+}
+
+#courses-other li b {
+  color: var(--text-primary);
+  font-weight: 400;
+  word-spacing: 5px;
+}
+
+#courses-other li span {
+  color: var(--text-muted);
+}
+
+#courses-other li span[title] {
+  cursor: help;
+}
+
+/* ==========================================================================
+   BOOKSTORE INTEGRATION
+   ========================================================================== */
+
+p#books {
+  margin-top: 1em;
+  padding: 4px 0 4px 64px;
+  background: transparent url(../images/books.gif) no-repeat;
+  min-height: 36px;
+}
+
+p#books a {
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   WAIT/LOADING STATE
+   ========================================================================== */
+
+#wait h2 {
+  border-radius: 10px;
+  background: var(--box-background);
+  border: 1px solid var(--box-border);
+  padding: 18px;
+  position: absolute;
+  top: -50%;
+  margin: 0 auto;
+  margin-top: 50%;
+  width: 50%;
+}
+
+/* ==========================================================================
+   LOGOUT & UNAVAILABLE PAGES
+   ========================================================================== */
+
+#pg-logout .info,
+#pg-unavailable .info {
+  margin-top: 18px;
+}
+
+#pg-logout .info h3,
+#pg-unavailable .info h3 {
+  color: var(--text-secondary);
+  margin-bottom: 0.5em;
+  font-size: 1.5em;
+}
+
+#pg-logout .info h3 img,
+#pg-unavailable .info h3 img {
+  float: left;
+  margin-right: 10px;
+}
+
+#pg-logout .info p,
+#pg-unavailable .info p {
+  color: #555;
+  margin: 9px 0;
+}
+
+/* ==========================================================================
+   ADMIN PAGES
+   ========================================================================== */
+
+.admin h1#app-name {
+  margin-bottom: 0;
+}
+
+.admin fieldset {
+  margin: 0 0 18px 18px;
+  border: 0;
+  padding: 0;
+}
+
+.admin #content .info p {
+  margin-top: 9px;
+}
+
+.admin label {
+  position: relative;
+}
+
+.admin label .help {
+  position: absolute;
+  top: 2em;
+  left: 0;
+  white-space: nowrap;
+  font-size: 10px;
+  color: #555;
+}
+
+/* ==========================================================================
+   MISCELLANEOUS
+   ========================================================================== */
+
+dt em,
+.courses span em {
+  cursor: help;
+}
+
+select.prefix {
+  position: relative;
+  top: -2px;
+}

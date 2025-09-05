@@ -1,0 +1,1102 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+	<title>WebReg | Manage Registration (Add / Drop)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css" media="screen,print">
+		/* prevent IE less than 6 from seeing CSS by adding empty comment at end of import */
+		@import 'css/common.css'
+		/**/
+		;
+		@import 'css/wrs.css'
+		/**/
+		;
+	</style>
+	<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+	<!-- provide CSS to IE6 and above to fix rendering bugs; use conditional comments -->
+	<!--[if gte IE 6]><style type="text/css" media="screen">@import 'css/ie.css';</style><![endif]-->
+	<script type="text/javascript" src="js/wrs.js"></script>
+	<script type="text/javascript" src="//sis.rutgers.edu/content/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="//sis.rutgers.edu/content/jquery/jquery-ui-1.11.4/jquery-ui.js"></script>
+	<script>
+
+		$(document).ready(function () {
+			// parse semester string
+			var semesterString = $("#semesterString").html();
+			AppData.SEMESTER_STRING = semesterString;
+			// parse financial agreements json
+			var jsonText = $("#financialAgreementsJson").html();
+			var financialAgreements = JSON.parse(jsonText);
+			//console.info(financialAgreements);
+			AppData.FINANCIAL_AGREEMENTS = financialAgreements;
+			console.info(AppData);
+			// show or hide financial agreement for default semester
+			WebregUtils.checkToHideFinancialAgreementForCurrentSemester();
+			// summer session potential collisions
+			var summerSessionPotentialCollisions = $("#summerSessionPotentialCollisions").html();
+			console.info("summerSessionPotentialCollisions: " + summerSessionPotentialCollisions);
+			AppData.SUMMER_SESSION_POTENTIAL_COLLISIONS = JSON.parse(summerSessionPotentialCollisions);
+			document.getElementById("fm-search").onsubmit = function () {
+				return SummerSessionUtils.isValidSubmit();
+			};
+		});
+
+		var AppData = (function () {
+			return {
+				FINANCIAL_AGREEMENTS: [],
+				SEMESTER_STRING: "",
+				START_SEMESTER: "20181",
+				SUMMER_SESSION_POTENTIAL_COLLISIONS: []
+			};
+		})();
+
+		var SummerSessionUtils = (function () {
+			return {
+				isValidSubmit: function () {
+					console.info("checking for potential collisions..");
+					// check for potential collisions
+					if (AppData.SUMMER_SESSION_POTENTIAL_COLLISIONS == null || AppData.SUMMER_SESSION_POTENTIAL_COLLISIONS.length == 0) {
+						console.info("no potential collisions detected.");
+						return true;
+					}
+					var courses = [];
+					// get add index values
+					$(".courseindex2").each(function (i, item) {
+						var value = $(item).val();
+						if (!value || value.length == 0) return;
+						console.info("value[" + i + "]: " + value);
+						courses.push(value);
+					});
+					console.info("courses.length: " + courses.length);
+					if (courses.length == 0) return true;
+					// validate courses
+					var isCollision = false;
+					$(courses).each(function (i, course) {
+						// check course against collisions
+						$(AppData.SUMMER_SESSION_POTENTIAL_COLLISIONS).each(function (j, collision) {
+							if (course == collision) isCollision = true;
+						});
+					});
+					console.info("isCollision: " + isCollision);
+					if (!isCollision) return true;
+					// show confirm
+					var message = "You are receiving this alert because you are attempting to register for the same course in a different section. ";
+					message += "This action may generate a bill if the duplicate course is added. ";
+					message += "Please select \"OK\" if you agree to the potential additional charges or \"Cancel\" to void this transaction.";
+					var confirmed = confirm(message);
+					console.info("confirmed: " + confirmed);
+					return confirmed;
+				}
+			};
+		})();
+
+		var FinancialAgreementUtils = (function () {
+			var _isBeforeStartSemester = function (selectedSemester) {
+				var s1 = parseInt(selectedSemester);
+				var s2 = parseInt(AppData.START_SEMESTER);
+				console.info("s1: " + s1 + ", s2: " + s2);
+				if (s1 < s2) return true;
+				return false;
+			};
+			return {
+				// containsFinancialAgreement
+				containsFinancialAgreement: function (selectedSemester) {
+					// override for terms before Spring 2018
+					if (_isBeforeStartSemester(selectedSemester)) {
+						console.info("isBeforeStartSemester[" + selectedSemester + "<" + AppData.START_SEMESTER + "], hiding financial agreement.");
+						return true;
+					}
+					// check for selected semester
+					var contains = false;
+					$(AppData.FINANCIAL_AGREEMENTS).each(function (i, item) {
+						//console.info(item);
+						var semester = item.year + "" + item.term;
+						//console.info(semester);
+						if (semester == selectedSemester) contains = true;
+					});
+					console.info("contains: " + contains);
+					return contains;
+				}
+			};
+		})();
+
+		var WebregUtils = (function () {
+			var _hideFinancial = function () {
+				$("#financial0").css("display", "none");
+				$("#financial1").css("display", "none");
+				$("#financial2").css("display", "none");
+				$("#submit").attr("value", "Add Courses " + String.fromCharCode(8594));
+			};
+			var _showFinancial = function () {
+				$("#financial0").css("display", "");
+				$("#financial1").css("display", "");
+				$("#financial2").css("display", "");
+				$("#submit").attr("value", "I Agree & Add Courses" + String.fromCharCode(8594));
+			};
+			return {
+				// checkToHideFinancialAgreementForCurrentSemester
+				checkToHideFinancialAgreementForCurrentSemester: function () {
+					if (FinancialAgreementUtils.containsFinancialAgreement(AppData.SEMESTER_STRING)) {
+						_hideFinancial();
+					}
+					else {
+						_showFinancial();
+					}
+				}
+			};
+		})();
+
+	</script>
+</head>
+
+<body class="wr" id="add-drop" onload="document.getElementById('i1').focus();">
+
+	<h1 id="app-name">Web Registration System</h1>
+	<ul id="nav-system">
+		<li id="user">Logged in as SHELVI CHADDAH (245002020)</li>
+		<li id="logout"><a href="logout.htm">Log Out</a></li>
+	</ul>
+
+	<div id="meta">
+
+
+		<p id="credits">Rutgers Business School- NB campus (U) | Attempting <span>13.0</span> credits | Completed
+			<span>59.0</span> credits</p>
+
+
+		<h2><a href="chooseSemester.htm">Choose Semester</a> <span>»</span> Fall 2025</h2>
+		<div class="tabs">
+			<ul>
+				<li id="lookup"><a href="courseLookup.htm?_flowId=lookup-flow"><span>Course Lookup</span></a></li>
+				<li id="manage"><a href="editSchedule.htm"><span>Manage Registration</span></a></li>
+				<li id="view"><a href="viewSchedule.htm"><span>View / Print Schedule</span></a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div id="content">
+
+
+
+
+
+
+
+
+
+
+
+		<!-- ADD TO REGISTRATION -->
+
+		<div class="box">
+			<form id="fm-search" action="addCourses.htm" method="post">
+				<h2><span>Add To Registration</span></h2>
+				<p style="margin:0;">
+					<a href="courseLookup.htm?_flowId=lookup-flow">Course Lookup</a>
+
+
+				</p>
+				<ol>
+
+					<li>
+						<label for="i1">Index 1</label>
+
+						<input id="i1" name="coursesToAdd[0].courseIndex" title="course index number" tabindex="1"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i2">Index 2</label>
+
+						<input id="i2" name="coursesToAdd[1].courseIndex" title="course index number" tabindex="2"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i3">Index 3</label>
+
+						<input id="i3" name="coursesToAdd[2].courseIndex" title="course index number" tabindex="3"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i4">Index 4</label>
+
+						<input id="i4" name="coursesToAdd[3].courseIndex" title="course index number" tabindex="4"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i5">Index 5</label>
+
+						<input id="i5" name="coursesToAdd[4].courseIndex" title="course index number" tabindex="5"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i6">Index 6</label>
+
+						<input id="i6" name="coursesToAdd[5].courseIndex" title="course index number" tabindex="6"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i7">Index 7</label>
+
+						<input id="i7" name="coursesToAdd[6].courseIndex" title="course index number" tabindex="7"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i8">Index 8</label>
+
+						<input id="i8" name="coursesToAdd[7].courseIndex" title="course index number" tabindex="8"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i9">Index 9</label>
+
+						<input id="i9" name="coursesToAdd[8].courseIndex" title="course index number" tabindex="9"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+					<li>
+						<label for="i10">Index 10</label>
+
+						<input id="i10" name="coursesToAdd[9].courseIndex" title="course index number" tabindex="10"
+							class="courseindex2" type="text" value="" size="5" maxlength="5">
+					</li>
+
+				</ol>
+				<div id="financial0"
+					style="font-family: arial; font-size: 11px; color: rgb(68, 68, 68); line-height: 16px; padding-top: 300px; margin-bottom: 0px; display: none;">
+					By adding a course, I acknowledge and certify that I have read and accept the <span
+						style="font-weight:bold;font-style:italic;">Financial Responsibility Statement</span> to the
+					right of the screen.
+				</div>
+				<div class="row btn"><input id="submit" type="submit" value="Add Courses →" tabindex="11"
+						class="btn-submit"></div>
+
+			</form>
+		</div>
+
+
+		<!-- SIDEBAR -->
+		<div id="sidebar">
+
+
+			<h2><span>Registered Courses</span> <a target="_blank" href="https://rutadmin.rutgers.edu/sarapp1">Online
+					Bill Payment</a> <a href="viewSchedule.htm">View / Print Schedule</a></h2>
+
+
+			<dl class="courses">
+
+				<dt style="margin-bottom:8px;">
+					<span>
+
+
+						<!-- TITLE -->
+						<b>FOUNDTNS CAREER JOUR</b>
+
+						<!-- COURSE STRING -->
+						(33:011:301)
+
+						<!-- SECTION STRING -->
+						Section 03
+
+						|
+
+						<!-- INDEX STRING -->
+						[20234]
+
+						<!-- CREDIT STRING -->
+						Credits: 1.0
+
+
+
+					</span>
+
+					<!-- BY ARRANGEMENT CREDITS -->
+
+
+					<!-- DROP COURSE -->
+					<form id="studentSchedule" action="dropCourse.htm" method="post"
+						onsubmit="if(confirm('Are you sure you want to drop this course?'))return true; else return false;">
+						<input type="hidden" name="dropcourse" value="20234">
+
+
+
+						<input type="submit" value="Drop">
+
+
+					</form>
+				</dt>
+
+				<dd>
+					<dl class="dl2">
+
+						<!-- COURSE MEETINGS -->
+
+
+						<div class="meeting2">
+
+							<!-- DAYNAME -->
+							<span class="dayname3">Monday</span>
+
+							<!-- MEETING TIME -->
+							<span class="timestring3">12:10 PM - 1:30 PM</span>
+
+							<!-- BUILDING ROOM -->
+							<span class="buildingroom3">
+
+								<!-- MAP LINK -->
+								<a class="ext" style="margin-top:.5em;" target="_blank"
+									href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+									BRR-1095
+								</a>
+
+							</span>
+
+							<!-- CAMPUS -->
+							<span class="campus3">Livingston</span>
+
+						</div>
+
+
+					</dl>
+
+				</dd>
+
+			</dl>
+
+			<dl class="courses">
+
+				<dt style="margin-bottom:8px;">
+					<span>
+
+
+						<!-- TITLE -->
+						<b>OPERATIONS MGT</b>
+
+						<!-- COURSE STRING -->
+						(33:136:386)
+
+						<!-- SECTION STRING -->
+						Section 06
+
+						|
+
+						<!-- INDEX STRING -->
+						[20296]
+
+						<!-- CREDIT STRING -->
+						Credits: 3.0
+
+
+
+					</span>
+
+					<!-- BY ARRANGEMENT CREDITS -->
+
+
+					<!-- DROP COURSE -->
+					<form id="studentSchedule" action="dropCourse.htm" method="post"
+						onsubmit="if(confirm('Are you sure you want to drop this course?'))return true; else return false;">
+						<input type="hidden" name="dropcourse" value="20296">
+
+
+
+						<input type="submit" value="Drop">
+
+
+					</form>
+				</dt>
+
+				<dd>
+					<dl class="dl2">
+
+						<!-- COURSE MEETINGS -->
+
+
+						<div class="meeting2">
+
+							<!-- DAYNAME -->
+							<span class="dayname3">Monday</span>
+
+							<!-- MEETING TIME -->
+							<span class="timestring3">5:40 PM - 7:00 PM</span>
+
+							<!-- BUILDING ROOM -->
+							<span class="buildingroom3">
+
+								<!-- MAP LINK -->
+								<a class="ext" style="margin-top:.5em;" target="_blank"
+									href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+									BRR-1095
+								</a>
+
+							</span>
+
+							<!-- CAMPUS -->
+							<span class="campus3">Livingston</span>
+
+						</div>
+
+
+
+						<div class="meeting2">
+
+							<!-- DAYNAME -->
+							<span class="dayname3">Wednesday</span>
+
+							<!-- MEETING TIME -->
+							<span class="timestring3">5:40 PM - 7:00 PM</span>
+
+							<!-- BUILDING ROOM -->
+							<span class="buildingroom3">
+
+								<!-- MAP LINK -->
+								<a class="ext" style="margin-top:.5em;" target="_blank"
+									href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+									BRR-1095
+								</a>
+
+							</span>
+
+							<!-- CAMPUS -->
+							<span class="campus3">Livingston</span>
+
+						</div>
+
+
+
+						<div class="meeting2">
+
+							<!-- DAYNAME -->
+							<span class="dayname3">Wednesday</span>
+
+							<!-- MEETING TIME -->
+							<span class="timestring3">10:35 AM - 11:30 AM</span>
+
+							<!-- BUILDING ROOM -->
+							<span class="buildingroom3">
+
+								<!-- MAP LINK -->
+								<a class="ext" style="margin-top:.5em;" target="_blank"
+									href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+									BRR-4087
+								</a>
+
+							</span>
+
+							<!-- CAMPUS -->
+							<span class="campus3">Livingston</span>
+
+						</div>
+
+
+					</dl>
+
+				</dd>
+
+			</dl>
+
+			<dl class="courses">
+
+				<dt style="margin-bottom:8px;">
+					<span>
+
+
+						<!-- TITLE -->
+						<b>FINANCIAL MANAGEMENT</b>
+
+						<!-- COURSE STRING -->
+						(33:390:300)
+
+						<!-- SECTION STRING -->
+						Section 15
+
+						|
+
+						<!-- INDEX STRING -->
+						[20378]
+
+						<!-- CREDIT STRING -->
+						Credits: 3.0
+
+
+
+					</span>
+
+					<!-- BY ARRANGEMENT CREDITS -->
+
+
+					<!-- DROP COURSE -->
+					<form id="studentSchedule" action="dropCourse.htm" method="post"
+						onsubmit="if(confirm('Are you sure you want to drop this course?'))return true; else return false;">
+						<input type="hidden" name="dropcourse" value="20378">
+
+
+
+						<input type="submit" value="Drop">
+
+
+					</form>
+				</dt>
+
+				<dd>
+					<dl class="dl2">
+
+						<!-- COURSE MEETINGS -->
+
+
+						<div class="meeting2">
+
+							<!-- DAYNAME -->
+							<span class="dayname3">Wednesday</span>
+
+							<!-- MEETING TIME -->
+							<span class="timestring3">2:00 PM - 5:00 PM</span>
+
+							<!-- BUILDING ROOM -->
+							<span class="buildingroom3">
+
+								<!-- MAP LINK -->
+								<a class="ext" style="margin-top:.5em;" target="_blank"
+									href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">
+									LSH-B117
+								</a>
+
+							</span>
+
+							<!-- CAMPUS -->
+							<span class="campus3">Livingston</span>
+
+						</div>
+
+
+					</dl>
+
+				</dd>
+
+			</dl>
+
+			<dl class="courses">
+
+				<dt style="margin-bottom:8px;">
+					<span>
+
+
+						<!-- TITLE -->
+						<b>INTRO TO MARKETING</b>
+
+						<!-- COURSE STRING -->
+						(33:630:301)
+
+						<!-- SECTION STRING -->
+						Section 91
+
+						|
+
+						<!-- INDEX STRING -->
+						[20539]
+
+						<!-- CREDIT STRING -->
+						Credits: 3.0
+
+
+
+					</span>
+
+					<!-- BY ARRANGEMENT CREDITS -->
+
+
+					<!-- DROP COURSE -->
+					<form id="studentSchedule" action="dropCourse.htm" method="post"
+						onsubmit="if(confirm('Are you sure you want to drop this course?'))return true; else return false;">
+						<input type="hidden" name="dropcourse" value="20539">
+
+
+
+						<input type="submit" value="Drop">
+
+
+					</form>
+				</dt>
+
+				<dd>
+					<dl class="dl2">
+
+						<!-- COURSE MEETINGS -->
+
+
+						<div class="meeting2">
+
+							<!-- DAYNAME -->
+							<span class="dayname3">Thursday</span>
+
+							<!-- MEETING TIME -->
+							<span class="timestring3">2:00 PM - 5:00 PM</span>
+
+							<!-- BUILDING ROOM -->
+							<span class="buildingroom3">
+
+							</span>
+
+							<!-- CAMPUS -->
+							<span class="campus3">Online</span>
+
+						</div>
+
+
+					</dl>
+
+				</dd>
+
+			</dl>
+
+			<dl class="courses">
+
+				<dt style="margin-bottom:8px;">
+					<span>
+
+
+						<!-- TITLE -->
+						<b>INTR SUPPLY CHAIN</b>
+
+						<!-- COURSE STRING -->
+						(33:799:301)
+
+						<!-- SECTION STRING -->
+						Section 90
+
+						|
+
+						<!-- INDEX STRING -->
+						[20575]
+
+						<!-- CREDIT STRING -->
+						Credits: 3.0
+
+
+
+					</span>
+
+					<!-- BY ARRANGEMENT CREDITS -->
+
+
+					<!-- DROP COURSE -->
+					<form id="studentSchedule" action="dropCourse.htm" method="post"
+						onsubmit="if(confirm('Are you sure you want to drop this course?'))return true; else return false;">
+						<input type="hidden" name="dropcourse" value="20575">
+
+
+
+						<input type="submit" value="Drop">
+
+
+					</form>
+				</dt>
+
+				<dd>
+					<dl class="dl2">
+
+						<!-- COURSE MEETINGS -->
+
+
+						<div class="meeting2">
+
+							<!-- DAYNAME -->
+							<span class="dayname3">Asynchronous content</span>
+
+							<!-- MEETING TIME -->
+							<span class="timestring3"></span>
+
+							<!-- BUILDING ROOM -->
+							<span class="buildingroom3">
+
+							</span>
+
+							<!-- CAMPUS -->
+							<span class="campus3">Online</span>
+
+						</div>
+
+
+					</dl>
+
+				</dd>
+
+			</dl>
+
+
+
+
+
+			<p id="books" style="margin-top:35px;">
+
+
+				<span style="font-style:italic;">Course material information for review and purchase for all
+					courses:</span>
+
+
+
+				<a href="https://rutgers.bncollege.com/webapp/wcs/stores/servlet/TBListView?cm_mmc=RI-6601_-A &amp;catalogId=10001&amp;storeId=58552&amp;courseXml=&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;textbookorder&gt; &lt;courses&gt;&lt;course dept=&quot;011&quot; num=&quot;301&quot; sect=&quot;03&quot; term=&quot;F25&quot; /&gt;&lt;course dept=&quot;136&quot; num=&quot;386&quot; sect=&quot;06&quot; term=&quot;F25&quot; /&gt;&lt;course dept=&quot;390&quot; num=&quot;300&quot; sect=&quot;15&quot; term=&quot;F25&quot; /&gt;&lt;course dept=&quot;630&quot; num=&quot;301&quot; sect=&quot;91&quot; term=&quot;F25&quot; /&gt;&lt;course dept=&quot;799&quot; num=&quot;301&quot; sect=&quot;90&quot; term=&quot;F25&quot; /&gt;&lt;/courses&gt;&lt;/textbookorder&gt;"
+					target="_blank" class="ext">Barnes &amp; Noble, New Brunswick</a>
+
+
+
+
+
+
+			</p>
+
+
+
+
+
+
+			<style>
+				.frs_spacing1 {
+					margin-top: 10px;
+				}
+
+				.frs_header1 {
+					font-weight: bold;
+				}
+			</style>
+			<h1 id="financial1" style="clear: left; font-style: italic; display: none;">Financial Responsibility
+				Statement</h1>
+			<div id="financial2"
+				style="line-height: 16px; padding-bottom: 25px; font-family: verdana; font-size: 11px; display: none;">
+
+
+				By registering for class(es), I acknowledge that I have read, understand, and agree to the following
+				terms and conditions.
+				I understand that I am agreeing to a legally binding contract to pay all tuition and fees assessed to my
+				student account and all additional costs and expenses related to my enrollment at
+				Rutgers University ("Rutgers"). These costs and expenses include, but are not limited to, housing, meal
+				plans, flex dollars, health insurance and all other departmental or school costs
+				processed through my student account.<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Agreement to Pay and Due Dates:
+				</span>
+				I understand that when I register for classes at Rutgers University and receive services, I accept full
+				responsibility to pay all tuition, fees and other associated costs assessed as a result
+				of my registration and/or receipt of services. I further understand and agree that my enrollment and
+				acceptance of these terms constitutes a promissory note agreement
+				(i.e., a financial obligation in the form of an educational loan as defined by the U.S. Bankruptcy Code
+				at 11 U.S.C. §523(a)(8)) in which Rutgers University is providing me educational services,
+				deferring some or all of my payment obligation for those services, and I promise to pay for all assessed
+				tuition, fees and other associated costs by the published or assigned due date.)
+				<div class="frs_spacing1"></div>
+				I promise to pay all tuition, fees, costs, credit, goods, services and expenses by the published due
+				date specified in the most recent Rutgers publication setting a due date or by a due date agreed to
+				between myself and Rutgers in a separate written agreement specifically applicable to a cost, expense,
+				fee or other sum due.
+				If there is no due date as agreed as set forth above or provided in this agreement, then my obligation
+				shall fall due ten (10) days after I have incurred the obligation.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Effect of Withdrawal/Dropping Classes on My Financial Responsibility:
+				</span>
+				I understand and agree that if I drop or withdraw from some or all of the classes for which I register,
+				I will be responsible for paying all or a portion of my tuition and fees in accordance with
+				Rutgers's published tuition refund schedule in effect at the time I withdraw from or drop courses.
+				I have read the terms and conditions of Rutgers's published tuition refund schedule and understand those
+				terms are incorporated herein by reference.
+				I acknowledge and understand that my absence from or failure to attend class(es) or my non-receipt of a
+				bill from Rutgers does not defer the due dates or relieve me of my financial responsibilities to
+				Rutgers.
+				I also acknowledge that specific programs, such as Study Abroad, may have separate and unique refund
+				policies with respect to their individual program costs,
+				and that I am likewise responsible for adhering to any specific financial responsibilities outlined in
+				the respective terms and conditions of any such program I agree to participate in.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Federal Aid:
+				</span>
+				I understand that any federal or state financial aid (including Title IV and/or Title VII funds) that I
+				receive, except for Federal Work Study wages, will first be applied to any outstanding
+				balance on my account for tuition, fees, room and board. Title IV financial aid includes aid from the
+				Pell Grant, Supplemental Educational Opportunity Grant (SEOG), Direct Loans, PLUS Loans,
+				and Perkins Loans programs. I authorize Rutgers University to apply my Title IV and/or Title VII
+				financial aid to other charges assessed to my student account such as student health insurance,
+				parking permits and fines, bookstore charges, service fees and fines, and any other educationally
+				related charges. I further understand that this authorization will remain in effect
+				until I formally rescind it by <a href="mailto:titleiv@sa.rutgers.edu">contacting Student
+					Accounting</a>.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Method of Communication:
+				</span>
+				I understand and agree to Rutgers using e-mail as one of its official methods of communication.
+				I am responsible for promptly reading the emails I receive from Rutgers or those acting on its behalf.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Method of Billing:
+				</span>
+				I understand that Rutgers uses electronic billing (e-bill) as its official billing method, and therefore
+				I am responsible for viewing and paying my student account e-bill by the scheduled due date.
+				I further understand that a failure to review my e- bill does not constitute a valid reason for not
+				paying my bill on time.
+				E-bill information is available to me on studentabc.rutgers.edu.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Consent to Methods of Contact:
+				</span>
+				I authorize Rutgers, its agents and contractors to contact me at my current and any future cellular
+				phone number(s), email address(es) or wireless device(s) regarding a) student account billing
+				and payments, b) my delinquent student account(s)/loan(s), and/or c) any other debt I owe to Rutgers
+				and/or d) to receive general information from Rutgers.
+				I authorize Rutgers and its agents and contractors to use automated telephone dialing equipment,
+				artificial or pre-recorded voice or text messages, and personal calls and emails,
+				in their efforts to contact you. Furthermore, I understand that I may withdraw my consent to calls to my
+				cellular phone by submitting my request in writing to
+				Rutgers's Student Financial Services' Office or in writing to the applicable agent or contractor
+				contacting me on behalf of Rutgers.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Electronic Delivery of IRS Form 1098-T:
+				</span>
+				I understand that Rutgers University will deliver my IRS Form 1098-T electronically every year I have
+				reportable transactions, and that I may view and print IRS Form 1098-T by logging into
+				<a target="_blank"
+					href="https://studentabc.rutgers.edu/tax-information">https://studentabc.rutgers.edu/tax-information</a>
+				and following the appropriate instructions for Legacy or RBHS students, respectively.
+				I further understand that by consenting to receive this information electronically, a paper copy of my
+				Form 1098-T will not be mailed.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Delinquent Accounts/Collections:
+				</span>
+				I agree that if I fail to pay any sums payable to Rutgers by the scheduled due date, Rutgers may place a
+				Hold on my account and may deny, withhold or refuse services and/or credit including
+				future registration, loans, housing and other certifications until all sums due and payable to Rutgers
+				have been paid. I agree that failure to fully pay Rutgers
+				by the scheduled due date for any payment will result in all sums becoming immediately due and payable.
+				<div class="frs_spacing1"></div>
+				Furthermore, I understand and agree that, if I leave Rutgers University with an unpaid balance, that I
+				authorize and consent to the University and its agents, attorneys, and contractors
+				to collect any sums due, unless I notify Rutgers, the attorney, the collection agency, agents or
+				contractors, as applicable, in writing to cease communication.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					I Agree to Pay the Following Fees:
+				</span>
+				These fees are immediately due and payable and must be paid to restore my student account to good
+				standing and terminate any Hold.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					a) Returned Payment and Stop Payment Charge:
+				</span>
+				If a payment to my student account is returned, dishonored or otherwise rejected by a financial
+				institution for any reason (regardless of the form/method of payment),
+				I agree to immediately pay the obligation I sought to pay by the returned, dishonored or rejected
+				payment, plus any financial institution charges Rutgers incurs due to the
+				dishonored or otherwise rejected payment, plus a returned payment fee of $60.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					b) Collection Charges/Fees:
+				</span>
+				I agree that Rutgers may refer my past due account for collection, including, but not limited to,
+				authorizing legal action against me for collection of any amounts not paid when due.
+				In the event that my account is referred to a collection agency, I will be responsible for and agree to
+				pay collection agency fees in addition to the sums referred for collection
+				(not to exceed 40% of the sum referred for collection). I also agree in the event my account is referred
+				to an attorney for collection, I will be responsible for reasonable attorneysï¿½ fees
+				determined by a court together with court costs and disbursements as permitted by law.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					c) Late Fees: </span>
+				Payments not made by the payment due date listed on your online student statement of account will be
+				charged a late payment fee of $125.
+				Online payments usually take 3-5 days to process, please be advised that you will not receive a late fee
+				during processing time.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Reporting Past Due Accounts To Credit Reporting Bureaus:
+				</span>
+				I agree that Rutgers may report my failure to pay Rutgers as agreed to credit reporting bureaus.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Student Age:
+				</span>
+				I understand and agree that if I am younger than the applicable age of majority when executing this
+				agreement that the educational services, goods and credit provided by Rutgers are a necessity,
+				and that I am contractually obligated to pay Rutgers pursuant to the "doctrine of necessaries."
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Delivery of Educational and Non-Educational Services:
+				</span>
+				The tuition and fees you pay are in exchange for learning, academic credit, progress toward a degree,
+				non-academic services/programs and defray the costs of delivering our world-class educational
+				experience. We cannot predict in advance every circumstance that may prevent classes from meeting at the
+				times, in the place, or in the manner you or we may anticipate at the start of a semester.
+				Accordingly, your tuition and fees will be the same, and you will not be entitled to a refund or
+				adjustment, if the time, place, or method of delivery of a class must change,
+				or if you are unable to access particular campus facilities or services. Separate from circumstances
+				beyond our control that may require changes, Rutgers reserves the right to determine
+				how educational content and other programs and serves will be delivered, and to make changes in
+				curricula, degree requirements, course offerings, or academic policies and procedures at any time
+				when, in the best judgment and sole discretion of the faculty, the president or the Board of Governors,
+				such changes are in the best interests of students, the university, or the community.
+				No tuition refund or adjustment shall be provided on account of such changes.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Entire Agreement; No Changes.
+				</span>
+				This agreement supersedes all prior understandings, representations, negotiations and correspondence
+				between myself and Rutgers.
+				This agreement is governed by the laws of the State of New Jersey. I agree that the laws of the State of
+				New Jersey will be applied in interpreting and enforcing this Agreement no matter
+				where a proceeding is brought to enforce or construe it. This agreement shall be treated as if it were
+				made in the State of New Jersey wherever I may be when I sign it.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Modifications By Subsequent Rutgers Publications:
+				</span>
+				The terms of this agreement may be modified by terms set forth in a subsequently published Rutgers
+				publication if the publication is communicated to me as authorized in this agreement
+				and I thereafter register for any course(s) at Rutgers. Any such modification shall not increase the
+				principal amount then due from me or provide for acceleration of the payment due date
+				of any of my obligations existing on the date I accept the modification. Any modification is
+				specifically limited to those policies and/or terms addressed in the modification.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Acknowledgment of Opportunity to Consult with Advisors:
+				</span>
+				I acknowledge that I have been given a full and fair opportunity to consult with any persons, advisors,
+				and/or legal counsel of my choice, internal or external to the University,
+				concerning the terms and meaning of this Agreement.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Tuition Remission:
+				</span>
+				The policy governing tuition remission Educational Benefits, Section 60.2.1, provides that, regularly
+				appointed faculty and staff and retired employees may qualify for tuition remission
+				for themselves and their children under certain conditions. The tuition remission benefit is applicable
+				to tuition only. Any and all other costs, charges, fees, expenses, and penalties
+				(including penalties associated with late submission of application forms and/or any other eligibility
+				documents) are the responsibility of the student.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Severability:
+				</span>
+				If any provision of this agreement shall be declared by a court of competent jurisdiction to be invalid,
+				illegal or incapable of being enforced in whole or in part, such provision
+				shall be interpreted so as to remain enforceable to the maximum extent permissible consistent with
+				applicable law. The remaining provisions of this agreement shall nevertheless
+				remain in full force and effect and enforceable to the extent they are valid, legal, and enforceable,
+				and no provisions shall be deemed dependent upon any other covenant or provision unless
+				so expressed herein.
+				<div class="frs_spacing1"></div>
+
+
+				<span class="frs_header1">
+					Tuition Refund Schedule:
+				</span>
+				<div class="frs_spacing1"></div>
+				<ul>
+					<li><a target="_blank"
+							href="https://finance.rutgers.edu/student-abc/refunds/withdrawals-school">https://finance.rutgers.edu/student-abc/refunds/withdrawals-school</a>
+					</li>
+					<li><a target="_blank"
+							href="https://scarlethub.rutgers.edu/registrar/registration/withdrawal-from-all-courses">https://scarlethub.rutgers.edu/registrar/registration/withdrawal-from-all-courses</a>
+					</li>
+				</ul>
+				<div class="frs_spacing1"></div>
+
+				<span class="frs_header1">
+					1098-T:
+				</span>
+				<div class="frs_spacing1"></div>
+				<ul>
+					<li><a target="_blank"
+							href="https://finance.rutgers.edu/student-abc/tax-information/1098-t-form">https://finance.rutgers.edu/student-abc/tax-information/1098-t-form</a>
+					</li>
+					<li><a target="_blank"
+							href="https://studentabcweb.rutgers.edu/taxstatements">https://studentabcweb.rutgers.edu/taxstatements</a>
+					</li>
+				</ul>
+
+			</div>
+
+			<p style="display:;"><a href="//sis.rutgers.edu/soc" target="_blank" class="ext">University Schedule of
+					Classes</a></p>
+		</div>
+	</div>
+	<div id="footer">
+		<p>For help, please contact the <a target="_blank" href="https://it.rutgers.edu/help-support/">Office of
+				Information Technology Help Desk</a>.
+		</p>
+		<p>Visit web sites for
+			<a target="_blank" href="http://www.camden.rutgers.edu/">Camden campus</a>,
+			<a target="_blank" href="http://newark.rutgers.edu/">Newark campus</a>,
+			<a target="_blank" href="http://nb.rutgers.edu/">New Brunswick/Piscataway campus</a>, or
+			<a target="_blank" href="http://www.rutgers.edu">Rutgers University</a>.
+		</p>
+		<p>Rutgers is an equal access/equal opportunity institution. Individuals with disabilities are encouraged to
+			direct suggestions, comments, or complaints concerning any accessibility issues with Rutgers websites to <a
+				href="mailto:accessibility@rutgers.edu">accessibility@rutgers.edu</a> or complete the <a
+				href="https://it.rutgers.edu/it-accessibility-initiative/barrierform/" target="_blank">Report
+				Accessibility Barrier / Provide Feedback Form</a>.</p>
+		<a id="logo" target="_blank" href="http://www.rutgers.edu" title="go to Rutgers University home page"><img
+				src="/webreg/images/ru_logo.png" width="150" height="40" alt="Rutgers logo"></a>
+	</div>
+	<div id="financialAgreementsJson" style="display:none;">[{"rcpid":1256022,"yearterm":"20257","date":"May 30, 2025
+		11:46:10
+		PM","clientip":"68.83.57.138","applicationcode":"OTB","ruid":"245002020","year":0,"term":null},{"rcpid":1256022,"yearterm":"20259","date":"Jun
+		30, 2025 1:16:30
+		AM","clientip":"68.83.57.138","applicationcode":"WEBREG","ruid":"245002020","year":2025,"term":"9"}]</div>
+	<div id="semesterString" style="display:none;">20259</div>
+	<div id="summerSessionPotentialCollisions" style="display:none;">[]</div>
+
+
+
+	<span id="PING_CONTENT_MB_MAIN" style="display: none;"></span>
+</body>
+
+</html>

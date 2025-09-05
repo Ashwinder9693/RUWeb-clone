@@ -1,0 +1,574 @@
+/* ==========================================================================
+   PRINT STYLESHEET - Calendar Application
+   ========================================================================== */
+
+/* DO NOT PRINT - Hide screen-only elements */
+h1#app-name,
+#nav-system,
+#meta h2 a,
+#meta h2 span,
+#meta .tabs,
+p.filters,
+#footer,
+form,
+#books {
+  display: none;
+}
+
+/* PRINT ONLY - Show print-specific elements */
+span.print {
+  display: inline;
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+}
+
+body,
+table {
+  font-size: 9pt !important;
+  color: #000;
+}
+
+/* ==========================================================================
+   HEADER & META INFORMATION
+   ========================================================================== */
+
+#meta {
+  background: #fff;
+}
+
+#meta #credits {
+  float: none;
+  position: relative;
+  top: 32pt;
+  left: 0;
+  z-index: 2;
+  margin: 0;
+  text-align: left;
+  font-size: 8pt;
+  line-height: 1.0;
+}
+
+#meta #credits span {
+  font-size: 12pt !important;
+}
+
+#meta h2 {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  line-height: 1.0;
+  margin: 0 0 3.5em 0;
+  padding: 0;
+  font-size: 12pt !important;
+}
+
+.schedule #meta h2,
+.schedule #meta #credits {
+  left: 25px;
+}
+
+#grid #meta h2,
+#grid #credits {
+  left: 55px !important;
+}
+
+/* ==========================================================================
+   COURSE & DAY LISTS
+   ========================================================================== */
+
+.list-course,
+.list-course table,
+.list-day,
+.list-day table {
+  margin: 0 0 10pt 0;
+  width: 100%;
+}
+
+.list-course th,
+.list-day th,
+.list-course td,
+.list-day td {
+  font-size: 9pt !important;
+  padding-left: 7px !important;
+}
+
+.list-course th span {
+  font-size: 7pt !important;
+}
+
+.list-day td b {
+  font-weight: 400 !important;
+}
+
+a {
+  text-decoration: none;
+  color: #555 !important;
+}
+
+#content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ==========================================================================
+   CALENDAR GRID
+   ========================================================================== */
+
+#grid #calendar {
+  margin: 0;
+  margin-top: -15pt;
+}
+
+#grid #calendar th div {
+  font-size: 8pt;
+}
+
+/* BY-DAY AND BY-COURSE LAYOUTS */
+#by-day .list-day,
+#by-course .list-course {
+  width: 96%;
+  clear: both;
+  margin: 0 auto;
+}
+
+#by-day .list-day table,
+#by-course .list-course table {
+  font: normal 400 9pt/1.5 Verdana, Helvetica, sans-serif;
+  width: 100%;
+}
+
+#by-day .list-day th,
+#by-course .list-course th {
+  border-bottom: 1px solid #ddd;
+  word-spacing: 5pt;
+  padding-top: 1.5em;
+  color: #000;
+  text-transform: uppercase;
+  font: 400 13pt/1.0 Georgia, "Times New Roman", serif;
+  background: #fff;
+}
+
+#by-day .list-day td,
+#by-course .list-course td {
+  font-size: 9pt;
+  color: #777;
+  padding: 5pt 7pt 0;
+}
+
+#by-day .list-day th span,
+#by-course .list-course th span,
+#by-day .list-day td span {
+  color: #777;
+  font: normal 400 9pt/1.0 Verdana, Arial, sans-serif;
+  text-transform: capitalize;
+}
+
+#by-day .list-day b {
+  word-spacing: 5pt;
+  font-weight: 900;
+  color: #000;
+}
+
+/* ==========================================================================
+   HEADER TYPOGRAPHY
+   ========================================================================== */
+
+#header p#tagline {
+  font-size: 12pt;
+  line-height: 1.6;
+}
+
+#header h1#app-name {
+  font-size: 13pt;
+}
+
+#content p {
+  margin: 12pt 0;
+}
+
+/* ==========================================================================
+   MESSAGES & NOTIFICATIONS
+   ========================================================================== */
+
+.info,
+.errors,
+.success {
+  clear: both;
+  padding: 20px 20px 20px 100px;
+  margin: 0 0 1em;
+  font-weight: bold;
+  font-size: 1.3em;
+  line-height: 1.5;
+}
+
+.info ul li,
+.errors ul li,
+.success ul li {
+  list-style: none;
+}
+
+.info {
+  background: #eff url(../images/info.gif) no-repeat 2em 50%;
+}
+
+.errors {
+  background: #fed url(../images/error.gif) no-repeat 2em 50%;
+}
+
+.success {
+  background: #dfa url(../images/confirm.gif) no-repeat 2em 50%;
+}
+
+#content p.info,
+#content p.help {
+  font-weight: normal;
+  font-size: 1.1em;
+  background-color: #fff;
+  color: #000;
+  background: url(../images/info-s.gif) no-repeat 0 0;
+  border-color: #fff;
+  padding: 0 0 0 2em;
+  line-height: 1.5;
+}
+
+#content p.help {
+  background: url(../images/help.gif) no-repeat 0 0;
+}
+
+/* ==========================================================================
+   FORMS
+   ========================================================================== */
+
+fieldset {
+  margin: 2em 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-width: 1px 0 0;
+}
+
+legend {
+  margin: 1em 5px;
+  color: #b00;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+fieldset fieldset {
+  margin: 1.5em 0;
+  padding: 1em;
+  border-width: 1px;
+  background: #fafafa;
+}
+
+fieldset fieldset legend {
+  color: #000;
+  font-size: 1em;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+label {
+  cursor: pointer;
+  font-size: 1em;
+  color: #666;
+}
+
+input,
+select,
+textarea,
+option {
+  font: normal 1.1em sans-serif;
+}
+
+input,
+textarea {
+  padding: 0 2px;
+}
+
+select option {
+  margin: auto 0.5em 0 0;
+}
+
+/* VERTICAL FORM LAYOUT */
+.fm-v div.row {
+  padding: 0.5em 0;
+  width: 100%;
+  float: left;
+  line-height: 2.0;
+}
+
+.fm-v div.row label {
+  float: left;
+  line-height: 1.5;
+}
+
+.fm-v div.row input {
+  float: left;
+  clear: left;
+}
+
+.fm-v div.row input.check {
+  float: left;
+  clear: left;
+  margin: 0 0.5em 0 0;
+}
+
+.fm-v div.row label.check {
+  float: left;
+}
+
+.fm-v div.row input.radio {
+  float: left;
+  clear: left;
+  margin: 0 0.5em 0 0;
+}
+
+.fm-v div.row label.radio {
+  float: left;
+}
+
+.fm-v div.row select,
+.fm-v div.row textarea {
+  float: left;
+  clear: both;
+}
+
+.fm-v div.row span.msg-error {
+  color: #b00;
+  display: block;
+  float: left;
+  margin-left: 1em;
+  padding-left: 2em;
+  font-size: 1.1em;
+  line-height: 1.55;
+  background: url(../images/error-s.gif) left top no-repeat;
+}
+
+.fm-v div.row input.btn-submit {
+  display: block;
+  margin: 0;
+}
+
+.fm-v div.row button {
+  font-size: 1.1em;
+  margin: 0;
+  padding: 0 2px;
+  float: left;
+  clear: left;
+}
+
+/* HORIZONTAL FORM LAYOUT */
+.fm-h div.row {
+  padding: 0.5em 0;
+  margin: 0;
+  width: 100%;
+  float: left;
+  font-size: 10px;
+}
+
+.fm-h div.row label {
+  float: left;
+  width: 15em;
+  text-align: right;
+  clear: left;
+  margin-right: 0.5em;
+  line-height: 1.5;
+}
+
+.fm-h div.row input {
+  float: left;
+  clear: right;
+}
+
+.fm-h div.row input.btn-submit {
+  clear: both;
+  display: block;
+  margin: 0 0 0 14.1em;
+}
+
+.fm-h div.row button {
+  float: left;
+  font-size: 1.1em;
+  clear: both;
+  margin: 0 0 0 14.1em;
+}
+
+/* FORM VALIDATION STYLES */
+input.error,
+select.error,
+textarea.error {
+  background: #ffefef;
+  color: #b00;
+  border: 1px solid #b00;
+}
+
+.required {
+  background: #ff9;
+}
+
+/* ==========================================================================
+   LISTS
+   ========================================================================== */
+
+dl {
+  margin: 1em 0;
+}
+
+dd {
+  margin: 0.5em 0 0.5em 2em;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   CALENDAR TABLE GRID
+   ========================================================================== */
+
+table {
+  border: 0;
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+/* Calendar Header - Days */
+#grid #calendar thead th {
+  text-align: center;
+  color: #777;
+  border: 0;
+  border-bottom: 2px solid #555;
+  border-left: 1px solid #fff;
+  background: #eee;
+  font-size: 7pt;
+}
+
+#grid #calendar thead tr th.first {
+  border: 0;
+}
+
+#grid #calendar thead tr th.monday {
+  border-left-color: #fff;
+}
+
+/* Calendar Hours */
+#grid #calendar tbody th {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0;
+}
+
+#grid #calendar th div {
+  position: relative;
+  top: -3.5pt;
+  padding: 0 2pt 0 0;
+  height: 60px;
+  padding-top: 0;
+  font-size: 7pt;
+  color: #777;
+}
+
+/* Calendar Cells */
+#grid #calendar td.start {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 60px;
+  padding: 0;
+}
+
+#grid #calendar td.start div {
+  position: relative;
+  left: 0;
+  top: 0;
+  height: auto;
+  width: 125px;
+  border: 0;
+  overflow: visible;
+}
+
+#grid #calendar td.start div div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 5px 0 0;
+  width: 123px;
+  border: 1px solid #999;
+  font-size: 6pt;
+}
+
+/* External link styling */
+a.ext {
+  padding-right: 5px;
+  background-image: none !important;
+}
+
+/* ==========================================================================
+   COURSE LISTINGS
+   ========================================================================== */
+
+.cl * {
+  font-size: 9pt !important;
+}
+
+.cl h2 {
+  font-size: 12pt !important;
+  margin: 18pt 0 8pt 0;
+  border-top: 1px solid #000;
+  padding-top: 10pt;
+  padding-left: 7px;
+}
+
+.cl ul {
+  padding-left: 7px !important;
+  margin-left: 0 !important;
+}
+
+#grid .cl ul {
+  padding-left: 0 !important;
+  margin-left: 55px !important;
+}
+
+#grid .cl h2,
+#grid .cl #courses-other {
+  margin-left: 55px;
+  padding-left: 0;
+}
+
+.cl #courses-other li b {
+  font-family: Verdana, sans-serif;
+  font-weight: 400 !important;
+}
+
+/* ==========================================================================
+   CAMPUS COLOR CODING FOR PRINT
+   ========================================================================== */
+
+/* Campus Colors (if you want them to print) */
+#grid .b { background-color: #bfeeff !important; }           /* Busch - Blue */
+#grid .cd { background-color: #cfc !important; }             /* Cook/Douglas - Green */
+#grid .l { background-color: #fc9 !important; }              /* Livingston - Orange */
+#grid .ca { background-color: #ffb !important; }             /* College Ave - Yellow */
+#grid .d { background-color: #ffd7ef !important; }           /* Downtown - Pink */
+#grid .cm { background-color: #e4bfff !important; }          /* Camden - Purple */
+#grid .nk { background-color: #eed !important; }             /* Newark - Gray */
+#grid .online { background-color: #c0efef !important; }      /* Online - Light Blue */
+#grid .online2 { background-color: #aaffff !important; }     /* Online Alt */
+#grid .online1 { background-color: #c0efef !important; }     /* Online */
+#grid .u { background-color: #ddd !important; }              /* Unknown - Silver */
+
+#grid #calendar div.campus.nbp {
+  background-color: #9cf !important;
+}
+
+/* Page break for print (commented out as it may cause issues) */
+/* .cl h2 { page-break-before: always; } */
