@@ -133,7 +133,7 @@
     <h2><a href="chooseSemester.html">Choose Semester</a> <span>»</span> Fall 2025</h2>
     <div class="tabs">
       <ul>
-        <li id="lookup"><a href="https://sims.rutgers.edu/webreg/courseLookup.htm?_flowId=lookup-flow"><span>Course Lookup</span></a></li>
+        <li id="lookup"><a href="courseLookup.html"><span>Course Lookup</span></a></li>
         <li id="manage"><a href="editSchedule.html"><span>Manage Registration</span></a></li>
         <li id="view"><a href="viewSchedule.html"><span>View / Print Schedule</span></a></li>
       </ul>
@@ -513,4 +513,42 @@
 </script>
 
 
-<span id="PING_CONTENT_MB_MAIN" style="display: none;"></span></body></html>
+<span id="PING_CONTENT_MB_MAIN" style="display: none;"></span><!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body></html>
