@@ -2,2619 +2,2490 @@
 	<title>WebReg | View / Print Schedule</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<style type="text/css" media="screen,print">
-		/* prevent IE less than 6 from seeing CSS by adding empty comment at end of import */
-		@import 'css/common.css'
-		/**/
-		;
-		@import 'css/wrs.css'
-		/**/
-		;
-	</style>
-	<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
-	<!-- provide CSS to IE6 and above to fix rendering bugs; use conditional comments -->
-	<!--[if gte IE 6]><style type="text/css" media="screen">@import 'css/ie.css';</style><![endif]-->
+	/* prevent IE less than 6 from seeing CSS by adding empty comment at end of import */
+	@import 'css/common.css'/**/;
+	@import 'css/wrs.css'/**/;
+</style>
+<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+<!-- provide CSS to IE6 and above to fix rendering bugs; use conditional comments -->
+<!--[if gte IE 6]><style type="text/css" media="screen">@import 'css/ie.css';</style><![endif]-->
 </head>
 
 <body class="schedule" id="grid">
-	<h1 id="app-name">Web Registration System</h1>
-	<ul id="nav-system">
-		<li id="user">Logged in as SHELVI CHADDAH (245002020)</li>
-		<li id="logout"><a href="logout.html">Log Out</a></li>
-	</ul>
+<h1 id="app-name">Web Registration System</h1>
+<ul id="nav-system"><li id="user">Logged in as SHELVI CHADDAH (245002020)</li><li id="logout"><a href="logout.htm">Log Out</a></li></ul>
 
-	<div id="meta">
+<div id="meta">
 
 
-		<p id="credits">Rutgers Business School- NB campus (U) | Attempting <span>17.0</span> credits | Completed
-			<span>59.0</span> credits</p>
+	<p id="credits">Rutgers Business School- NB campus (U) | Attempting <span>16.0</span> credits | Completed <span>73.0</span> credits</p>
 
 
-		<h2><a href="chooseSemester.html">Choose Semester</a> <span>»</span> Fall 2025</h2>
-		<div class="tabs">
-			<ul>
-				<li id="lookup"><a href="courseLookup.html?_flowId=lookup-flow"><span>Course Lookup</span></a></li>
-				<li id="manage"><a href="editSchedule.html"><span>Manage Registration</span></a></li>
-				<li id="view"><a href="viewSchedule.html"><span>View / Print Schedule</span></a></li>
-			</ul>
-		</div>
+<h2><a href="chooseSemester.htm">Choose Semester</a> <span>»</span> Spring 2026</h2>
+<div class="tabs">
+	<ul><li id="lookup"><a href="courseLookup.htm?_flowId=lookup-flow"><span>Course Lookup</span></a></li><li id="manage"><a href="editSchedule.htm"><span>Manage Registration</span></a></li><li id="view"><a href="viewSchedule.htm"><span>View / Print Schedule</span></a></li></ul>
+</div>
 
-	</div>
+</div>
 
-	<div id="content">
+<div id="content">
 
-		<p class="filters">
+<p class="filters">
+<a href="#" class="print" onclick="window.print();return false;">print</a>
+<b>View:</b> calendar | <a href="viewScheduleByCourse.htm">list by course</a> | <a href="viewScheduleByDay.htm">list by day</a>
+</p>
+
+<!-- CALENDAR -->	
+
+
+<p class="filters">
+	<b class="legend">Campus Legend:</b> 
+	<span class="online">Online</span>
+	<span class="b">Busch</span> 
+	<span class="ca">College Avenue</span> 
+	<span class="cd">Douglass / Cook</span> 
+	<span class="l">Livingston</span> 
+	<span class="d">Downtown</span> 
+	<span class="cm">Camden</span> 
+	<span class="nk">Newark</span> 
+	<span class="u">Other/Unknown</span>
+</p>	
+
+
+<table id="calendar" cellspacing="0">
+<thead>
+	<tr><th class="first"></th><th class="monday">Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th>
 		
-			<b>View:</b> calendar | <a href="viewScheduleByCourse.html">list by course</a> | <a href="viewScheduleByDay.html">list by day</a>
-		</p>
-
-		<!-- CALENDAR -->
-
-
-		<p class="filters">
-			<b class="legend">Campus Legend:</b>
-			<span class="online">Online</span>
-			<span class="b">Busch</span>
-			<span class="ca">College Avenue</span>
-			<span class="cd">Douglass / Cook</span>
-			<span class="l">Livingston</span>
-			<span class="d">Downtown</span>
-			<span class="cm">Camden</span>
-			<span class="nk">Newark</span>
-			<span class="u">Other/Unknown</span>
-		</p>
-
-
-		<table id="calendar" cellspacing="0">
-			<thead>
-				<tr>
-					<th class="first"></th>
-					<th class="monday">Monday</th>
-					<th>Tuesday</th>
-					<th>Wednesday</th>
-					<th>Thursday</th>
-					<th>Friday</th>
-
-
-
-
-
-				</tr>
-			</thead>
-			<tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr class="empty">
-					<th>
-						<div>8:00 AM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr class="empty">
-					<th>
-						<div>9:00 AM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>10:00 AM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 91px;top: 8px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">10:20 AM - 11:40 AM</span>
-								<!-- title -->
-								<b>PRINCIPLES OF INFORMATION AND DATA MANAGEMENT</b>
-								<!-- index -->
-								<span class="courseIndex" "="">01:198:336:05:09927</span>
+			
+		
+			
+		
+	</tr>
+</thead>
+<tbody>
+
+
+
+	
+		
+		
+		
+		
+			
+		
+		
+		
+		
+		
+
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr class="empty">
+			<th><div>8:00 AM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+		
+		
+		
+
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr class="empty">
+			<th><div>9:00 AM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+		
+		
+		
+
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+		
+			
+		
+		
+		<tr>
+			<th><div>10:00 AM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
+
+									
+									
+									<!-- COURSES -->							
+									
+
+										
+										
+										
+										
+											
+										
+										
+											
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
+
+										
+											
+											
+
+												
+
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:20px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">10:20 AM - 11:40 AM</span>
+													<!-- title -->
+													<b>BUS DEC ANALY UNCERT</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:136:400:03:21937</span>
 													<!-- credits -->
-													<span class=" credits">(4.0)</span>
-
-
-
-								<!-- buildingroom -->
-
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">LSH-A102</a>
-
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>11:00 AM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>12:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height:75px; top:10px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">12:10 PM - 1:30 PM</span>
-								<!-- title -->
-								<b>FOUNDTNS CAREER JOUR</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:011:301:03:20234</span>
+													<span class="credits">(3.0)</span>
+
+													
+
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-5071
+														</a>
+													
+
+													<!-- campusname -->
+													<span>Livingston</span>
+
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
+
+									
+									
+									<!-- COURSES -->							
+									
+
+										
+										
+										
+										
+											
+										
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
+
+										
+											
+											
+
+												
+
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:20px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">10:20 AM - 11:40 AM</span>
+													<!-- title -->
+													<b>FOUND BUS PROGRAM</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:136:388:01:21931</span>
 													<!-- credits -->
-													<span class=" credits">(1.0)</span>
-
-
-
-								<!-- buildingroom -->
-
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
-									BRR-1095
-								</a>
-
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 53px;top: 20px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">12:25 PM - 1:20 PM</span>
-								<!-- title -->
-								<b>PRINCIPLES OF INFORMATION AND DATA MANAGEMENT</b>
-								<!-- index -->
-								<span class="courseIndex" "="">01:198:336:05:09927</span>
+													<span class="credits">(3.0)</span>
+
+													
+
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-5073
+														</a>
+													
+
+													<!-- campusname -->
+													<span>Livingston</span>
+
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
+
+									
+									
+									<!-- COURSES -->							
+									
+
+										
+										
+										
+										
+											
+										
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
+
+										
+											
+											
+
+												
+
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:20px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">10:20 AM - 11:40 AM</span>
+													<!-- title -->
+													<b>BUS DEC ANALY UNCERT</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:136:400:03:21937</span>
 													<!-- credits -->
-													<span class=" credits">(4.0)</span>
-
-
-
-								<!-- buildingroom -->
-
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">LSH-A102</a>
-
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>1:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>2:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>3:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 100px;top:25px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">3:30 PM - 5:10 PM</span>
-								<!-- title -->
-								<b>STATISTICAL METHODS IN BUSINESS</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:136:385:11:20282</span>
+													<span class="credits">(3.0)</span>
+
+													
+
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-5071
+														</a>
+													
+
+													<!-- campusname -->
+													<span>Livingston</span>
+
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
+
+									
+									
+									<!-- COURSES -->							
+									
+
+										
+										
+										
+										
+											
+										
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
+
+										
+											
+											
+
+												
+
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:20px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">10:20 AM - 11:40 AM</span>
+													<!-- title -->
+													<b>FOUND BUS PROGRAM</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:136:388:01:21931</span>
 													<!-- credits -->
-													<span class=" credits">(3.0)</span>
-
-
-
-								<!-- buildingroom -->
-
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">BRR-3071</a>
-
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 100px;top:25px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">3:30 PM - 5:10 PM</span>
-								<!-- title -->
-								<b>STATISTICAL METHODS IN BUSINESS</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:136:385:11:20282</span>
+													<span class="credits">(3.0)</span>
+
+													
+
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-5073
+														</a>
+													
+
+													<!-- campusname -->
+													<span>Livingston</span>
+
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+		
+		
+		
+
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+		
+		<tr>
+			<th><div>11:00 AM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
+
+									
+									
+									<!-- COURSES -->							
+									
+
+										
+										
+										
+										
+											
+										
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
+
+										
+											
+											
+
+												
+
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:178px; top:0px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">11:00 AM - 2:00 PM</span>
+													<!-- title -->
+													<b>STAT METH BUSINESS</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:136:385:12:20917</span>
 													<!-- credits -->
-													<span class=" credits">(3.0)</span>
-
-
-
-								<!-- buildingroom -->
-
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">BRR-3071</a>
-
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 100px;top:25px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">3:30 PM - 5:10 PM</span>
-								<!-- title -->
-								<b>PRINCIPLES OF INFORMATION AND DATA MANAGEMENT</b>
-								<!-- index -->
-								<span class="courseIndex" "="">01:198:336:05:09927</span>
+													<span class="credits">(3.0)</span>
+
+													
+
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-5085
+														</a>
+													
+
+													<!-- campusname -->
+													<span>Livingston</span>
+
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+		
+		
+
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+		
+			
+				
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr>
+			<th><div>12:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
+
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+		
+		<tr>
+			<th><div>1:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
+
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr class="empty">
+			<th><div>2:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
+
+									
+									
+									<!-- COURSES -->							
+									
+
+										
+										
+										
+										
+											
+										
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
+
+										
+											
+											
+
+												
+
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:0px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">12:10 PM - 1:30 PM</span>
+													<!-- title -->
+													<b>BUILDING YOUR BRAND</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:011:302:06:21864</span>
 													<!-- credits -->
-													<span class=" credits">(4.0)</span>
-
-
-
-								<!-- buildingroom -->
-
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">LSH-A102</a>
-
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>4:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>5:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 76px;top: 40;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">5:40 PM - 7:00 PM</span>
-								<!-- title -->
-								<b>FINANCIAL MANAGEMENT</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:390:300:05:20367</span>
+													<span class="credits">(1.0)</span>
+
+													
+
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4146">
+															TIL-254
+														</a>
+													
+
+													<!-- campusname -->
+													<span>Livingston</span>
+
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
+
+		
+			
+		
+			
+		
+			
+		
+			
+				
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr>
+			<th><div>3:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
+
+									
+									
+									<!-- COURSES -->							
+									
+
+										
+										
+										
+										
+											
+										
+										
+											
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
+
+										
+											
+											
+
+												
+
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:50px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">3:50 PM - 5:10 PM</span>
+													<!-- title -->
+													<b>MANAGEMENT INFO SYS</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:136:370:13:21892</span>
 													<!-- credits -->
-													<span class=" credits">(3.0)</span>
+													<span class="credits">(3.0)</span>
 
+													
 
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-5087
+														</a>
+													
 
-								<!-- buildingroom -->
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">BRR-2071</a>
+													<!-- campusname -->
+													<span>Livingston</span>
 
-								<!-- campusname -->
-								<span>Livingston</span>
+												</div>
+											
+										
+									
+								</div>
+							</td>
+                            
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
 
-							</div>
+									
+									
+									<!-- COURSES -->							
+									
 
+										
+										
+										
+										
+											
+										
+										
+											
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
 
+										
+											
+											
 
-						</div>
-					</td>
+												
 
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 76px;top: 40px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">5:40 PM - 7:00 PM</span>
-								<!-- title -->
-								<b>OPERATIONS MGT</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:136:386:26:20305</span>
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:50px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">3:50 PM - 5:10 PM</span>
+													<!-- title -->
+													<b>MANAGEMENT INFO SYS</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:136:370:13:21892</span>
 													<!-- credits -->
-													<span class=" credits">(3.0)</span>
+													<span class="credits">(3.0)</span>
 
+													
 
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-5087
+														</a>
+													
 
-								<!-- buildingroom -->
+													<!-- campusname -->
+													<span>Livingston</span>
 
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">BE-250</a>
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
 
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
 
-								<!-- campusname -->
-								<span>Livingston</span>
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+		
+		<tr>
+			<th><div>4:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
 
-							</div>
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
 
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+		
+		<tr>
+			<th><div>5:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
 
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
 
-						</div>
-					</td>
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+			
+				
+			
+		
+		
+		<tr>
+			<th><div>6:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
 
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
 
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr class="empty">
+			<th><div>7:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
 
+									
+									
+									<!-- COURSES -->							
+									
 
+										
+										
+										
+										
+											
+										
+										
+											
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
 
+										
+											
+											
 
+												
 
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 76px;top: 40;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">5:40 PM - 7:00 PM</span>
-								<!-- title -->
-								<b>FINANCIAL MANAGEMENT</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:390:300:05:20367</span>
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:30px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">7:30 PM - 8:50 PM</span>
+													<!-- title -->
+													<b>FINANCIAL MANAGEMENT</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:390:300:07:21991</span>
 													<!-- credits -->
-													<span class=" credits">(3.0)</span>
+													<span class="credits">(3.0)</span>
 
+													
 
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-2071
+														</a>
+													
 
-								<!-- buildingroom -->
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">BRR-2071</a>
+													<!-- campusname -->
+													<span>Livingston</span>
 
-								<!-- campusname -->
-								<span>Livingston</span>
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
 
-							</div>
+									
+									
+									<!-- COURSES -->							
+									
 
+										
+										
+										
+										
+											
+										
+										
+											
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
 
+										
+											
+											
 
-						</div>
-					</td>
+												
 
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 76px;top: 40px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">5:40 PM - 7:00 PM</span>
-								<!-- title -->
-								<b>OPERATIONS MGT</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:136:386:26:20305</span>
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:180px; top:30px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">7:30 PM - 10:30 PM</span>
+													<!-- title -->
+													<b>INTRO TO MANAGEMENT</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:390:300:07:21991</span>
 													<!-- credits -->
-													<span class=" credits">(3.0)</span>
-
-
-
-								<!-- buildingroom -->
-
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">BE-250</a>
-
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr>
-					<th>
-						<div>6:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr class="empty">
-					<th>
-						<div>7:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 180px;top: 25px;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">7:30 PM - 10:30 PM</span>
-								<!-- title -->
-								<b>MANAGEMENT SKILLS</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:620:302:06:20478</span>
+													<span class="credits">(3.0)</span>
+
+													
+
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-2071
+														</a>
+													
+
+													<!-- campusname -->
+													<span>Livingston</span>
+
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td class="start">
+								<div>
+
+									
+									
+									<!-- COURSES -->							
+									
+
+										
+										
+										
+										
+											
+										
+										
+											
+										
+										
+										<!-- campus color -->
+										
+											
+											
+											
+											
+											
+											
+																
+											
+											
+										
+
+										
+											
+											
+
+												
+
+												<!-- COURSE INFORMATION -->		
+												<div class="l" style="height:75px; top:30px;" title="Livingston">
+													<!-- timestring -->
+													<span class="time">7:30 PM - 8:50 PM</span>
+													<!-- title -->
+													<b>FINANCIAL MANAGEMENT</b>
+													<!-- index -->
+													<span class="courseIndex" "="">33:390:300:07:21991</span>
 													<!-- credits -->
-													<span class=" credits">(3.0)</span>
-
-
-
-								<!-- buildingroom -->
-
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">BRR-1144</a>
-
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-					<td class="start">
-						<div>
-
-
-
-							<!-- COURSES -->
-
-
-
-
-
-
-
-
-
-
-							<!-- campus color -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<!-- COURSE INFORMATION -->
-							<div class="l" style="height: 76px;top: 40;" title="Livingston">
-								<!-- timestring -->
-								<span class="time">7:45 PM - 8:40 PM</span>
-								<!-- title -->
-								<b>FINANCIAL MANAGEMENT</b>
-								<!-- index -->
-								<span class="courseIndex" "="">33:390:300:05:20367</span>
-													<!-- credits -->
-													<span class=" credits">(3.0)</span>
-
-
-
-								<!-- buildingroom -->
-								<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4153">BRR-4031</a>
-
-								<!-- campusname -->
-								<span>Livingston</span>
-
-							</div>
-
-
-
-						</div>
-					</td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr class="empty">
-					<th>
-						<div>8:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr class="empty">
-					<th>
-						<div>9:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				<tr class="empty">
-					<th>
-						<div>10:00 PM</div>
-					</th>
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-
-
-					<td></td>
-
-
-
-
-
-
-
-
-
-				</tr>
-
-
-			</tbody>
-		</table>
-
-
-		<!-- BY ARRANGEMENT -->
-
-		<div class="cl">
-			<h2>By Arrangement, Off-campus, or Other Courses</h2>
-			<ul id="courses-other">
-
-
-
-
-
-			</ul>
-		</div>
-
-
-		<!-- WITHDRAWN -->
-
-
-	</div>
-
-	<div id="footer">
-		<p>For help, please contact the <a target="_blank" href="https://it.rutgers.edu/help-support/">Office of
-				Information Technology Help Desk</a>.
-		</p>
-		<p>Visit web sites for
-			<a target="_blank" href="http://www.camden.rutgers.edu/">Camden campus</a>,
-			<a target="_blank" href="http://newark.rutgers.edu/">Newark campus</a>,
-			<a target="_blank" href="http://nb.rutgers.edu/">New Brunswick/Piscataway campus</a>, or
-			<a target="_blank" href="http://www.rutgers.edu">Rutgers University</a>.
-		</p>
-		<p>Rutgers is an equal access/equal opportunity institution. Individuals with disabilities are encouraged to
-			direct suggestions, comments, or complaints concerning any accessibility issues with Rutgers websites to <a href="mailto:accessibility@rutgers.edu">accessibility@rutgers.edu</a> or complete the <a href="https://it.rutgers.edu/it-accessibility-initiative/barrierform/" target="_blank">Report
-				Accessibility Barrier / Provide Feedback Form</a>.</p>
-		<a id="logo" target="_blank" href="http://www.rutgers.edu" title="go to Rutgers University home page"><img src="/images/ru_logo.png" width="150" height="40" alt="Rutgers logo"></a>
-	</div>
-
-
-
+													<span class="credits">(3.0)</span>
+
+													
+
+													<!-- buildingroom -->
+													
+														<a class="ext" target="_blank" href="https://maps.rutgers.edu/#/?click=true&amp;selected=4181">
+															BRR-2071
+														</a>
+													
+
+													<!-- campusname -->
+													<span>Livingston</span>
+
+												</div>
+											
+										
+									
+								</div>
+							</td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
+
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr class="empty">
+			<th><div>8:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
+
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr class="empty">
+			<th><div>9:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+	
+		
+		
+		
+		
+			
+		
+		
+			
+		
+		
+			
+		
+		
+		
+
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+			
+		
+		
+		<tr class="empty">
+			<th><div>10:00 PM</div></th>
+			
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+				
+					
+					
+					
+						
+						
+							<td></td>
+						
+					
+				
+			
+				
+			
+				
+			
+			
+		</tr>
+	
+
+</tbody>
+</table>
+
+
+<!-- BY ARRANGEMENT -->
+
+	<div class="cl">
+		<h2>By Arrangement, Off-campus, or Other Courses</h2>
+		<ul id="courses-other">
+			
+		
+				
+		
+			
+		</ul>
+	</div>	
+
+
+<!-- WITHDRAWN -->
+
+
+</div>
+
+<div id="footer">
+	<p>For help, please contact the <a target="_blank" href="https://it.rutgers.edu/help-support/">Office of Information Technology Help Desk</a>.
+	</p>
+	<p>Visit web sites for 
+		<a target="_blank" href="http://www.camden.rutgers.edu/">Camden campus</a>, 
+		<a target="_blank" href="http://newark.rutgers.edu/">Newark campus</a>, 
+		<a target="_blank" href="http://nb.rutgers.edu/">New Brunswick/Piscataway campus</a>, or 
+		<a target="_blank" href="http://www.rutgers.edu">Rutgers University</a>.
+	</p>
+	<p>Rutgers is an equal access/equal opportunity institution. Individuals with disabilities are encouraged to direct suggestions, comments, or complaints concerning any accessibility issues with Rutgers websites to <a href="mailto:accessibility@rutgers.edu">accessibility@rutgers.edu</a> or complete the <a href="https://it.rutgers.edu/it-accessibility-initiative/barrierform/" target="_blank">Report Accessibility Barrier / Provide Feedback Form</a>.</p>
+	<a id="logo" target="_blank" href="http://www.rutgers.edu" title="go to Rutgers University home page"><img src="/webreg/images/ru_logo.png" width="150" height="40" alt="Rutgers logo"></a>
+</div>
+
+
+
+<div id="hl-aria-live-message-container" aria-live="polite" class="visually-hidden"></div><div id="hl-aria-live-alert-container" role="alert" aria-live="assertive" class="visually-hidden"></div><!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 <!-- Code injected by live-server -->
 <script>
 	// <![CDATA[  <-- For SVG support
@@ -2653,9 +2524,7 @@
 	}
 	// ]]>
 </script>
-
-
-<span id="PING_CONTENT_MB_MAIN" style="display: none;"></span><!-- Code injected by live-server -->
+<!-- Code injected by live-server -->
 <script>
 	// <![CDATA[  <-- For SVG support
 	if ('WebSocket' in window) {
@@ -2693,80 +2562,4 @@
 	}
 	// ]]>
 </script>
-<span id="PING_CONTENT_MB_MAIN" style="display: none;"></span><!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-<span id="PING_CONTENT_MB_MAIN" style="display: none;"></span><!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
-<span id="PING_CONTENT_MB_MAIN" style="display: none;"></span></body></html>
+</body></html>
